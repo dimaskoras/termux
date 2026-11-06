@@ -1,0 +1,52 @@
+<style>
+body{--c:hsl(210,85%,58%);margin:0;padding:10px 10px 30px}
+.r{display:flex;gap:5px;margin-bottom:6px}
+button{flex:1;padding:7px 0;border:0;border-radius:8px;background:var(--tg-theme-secondary-bg-color);color:var(--tg-theme-text-color);font-size:13px}
+button.on{background:var(--c);color:#fff}
+svg{display:block;width:100%;height:auto}
+.rm{fill:var(--tg-theme-secondary-bg-color);stroke:var(--tg-theme-hint-color);stroke-width:1}
+.rm.s{fill:var(--c);fill-opacity:.4;stroke:var(--c);stroke-width:2}
+.cr{fill:var(--tg-theme-hint-color);fill-opacity:.12}
+text{fill:var(--tg-theme-text-color);font-size:11px;text-anchor:middle;pointer-events:none}
+.i{min-height:18px;margin-top:6px;text-align:center;font-size:13px;color:var(--tg-theme-hint-color)}
+#p{fill:none;stroke:var(--c);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.d{fill:var(--c);animation:u 1.2s infinite}
+@keyframes u{50%{opacity:.3}}
+</style>
+<div class="r" id="b"><button class="on">Корпус А</button><button>Корпус Б</button></div>
+<div class="r" id="f"><button class="on">1 этаж</button><button>2 этаж</button><button>3 этаж</button><button id="k">🎨</button></div>
+<svg viewBox="0 0 300 180" id="m"></svg>
+<div class="i" id="i">Выбери аудиторию — построю маршрут от лифта</div>
+<script>
+const TW=window.TelegramWidget,$=i=>document.getElementById(i),B=document.body,m=$('m'),N='http://www.w3.org/2000/svg';
+const W=[[48,56,64,56,56],[60,44,72,44,60]],H=[210,150,30,320];
+let bl=0,fl=0,sel=-1,hi=0,tk=0;
+const hp=()=>{if(TW)TW.HapticFeedback.selectionChanged()};
+function e(n,a,t){const x=document.createElementNS(N,n);for(const k in a)x.setAttribute(k,a[k]);if(t!=null)x.textContent=t;m.appendChild(x);return x}
+function draw(){
+m.innerHTML='';tk++;
+e('rect',{x:10,y:78,width:280,height:24,class:'cr'});
+for(let r=0;r<2;r++){let x=10;for(let j=0;j<5;j++){const w=W[bl][j],id=r*5+j,y=r?102:14;
+const q=e('rect',{x:x+1,y:y,width:w-2,height:64,rx:4,class:'rm'+(sel==id?' s':'')});
+q.onclick=()=>pick(id);
+e('text',{x:x+w/2,y:y+36},(fl+1)*100+id+1);x+=w}}
+e('rect',{x:10,y:80,width:20,height:20,rx:4,class:'rm'});
+e('text',{x:20,y:94},'Л');
+e('circle',{cx:20,cy:90,r:4,class:'d'});
+if(sel>=0)route()}
+function route(){
+const x=10+W[bl].slice(0,sel%5).reduce((a,b)=>a+b,0)+W[bl][sel%5]/2,y=sel<5?46:134,a=x-20,L=a+Math.abs(y-90),s=y>90?1:-1;
+const p=e('path',{id:'p',d:'M20 90'}),c=e('circle',{cx:20,cy:90,r:5,fill:'var(--c)'}),t0=tk,T=Math.max(500,L*7);let st=0;
+function f(ts){if(t0!=tk)return;if(!st)st=ts;const k=Math.min(1,(ts-st)/T),d=L*k;
+const px=d<=a?20+d:x,py=d<=a?90:90+s*(d-a);
+p.setAttribute('d','M20 90H'+(d<=a?px:x)+(d>a?'V'+py:''));c.setAttribute('cx',px);c.setAttribute('cy',py);
+if(k<1)requestAnimationFrame(f)}
+requestAnimationFrame(f);
+const mt=Math.round(L*.3);
+$('i').textContent='Ауд. '+((fl+1)*100+sel+1)+' · '+mt+' м · ~'+Math.round(mt/1.3)+' с пешком'}
+function pick(id){sel=id;if(TW)TW.HapticFeedback.impactOccurred('light');draw()}
+function tabs(sel2,n,fn){const bs=Array.from(document.querySelectorAll(sel2)).slice(0,n);bs.forEach((b,i)=>{b.onclick=()=>{bs.forEach(x=>x.classList.remove('on'));b.classList.add('on');fn(i);sel=-1;$('i').textContent='Выбери аудиторию — построю маршрут от лифта';hp();draw()}})}
+tabs('#b button',2,i=>bl=i);tabs('#f button',3,i=>fl=i);
+$('k').onclick=()=>{hi=(hi+1)%4;B.style.setProperty('--c','hsl('+H[hi]+',85%,58%)');hp()};
+draw();
+</script>

@@ -1,0 +1,60 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LUMEN LAB</title><style>
+:root{--a:#5fffe4;--b:#8176ff;}
+*{box-sizing:border-box}
+body{margin:0;font:14px system-ui,-apple-system,sans-serif;color:#f0f5ff;background:none}
+.app{position:relative;overflow:hidden;padding:15px 17px 26px;border-radius:21px;background:linear-gradient(#222451,#090f20)}
+
+header,.head-left,.live,.controls,.modes,.bottom,.statline{display:flex;align-items:center}
+header{justify-content:space-between;gap:8px}
+.head-left{gap:9px}.logo{width:28px;height:28px;border:1px solid var(--a);border-radius:9px;display:grid;place-items:center;color:var(--a);font-size:18px;font-weight:800;background:#ffffff08;}
+.brand{font-size:14px;font-weight:850;letter-spacing:2px;line-height:1.05}.sub{font-size:9px;letter-spacing:1px;color:#93a4c4;margin-top:4px}
+.live{font-size:10px;letter-spacing:1px;color:#b9d5d9;gap:6px;border:1px solid #ffffff27;padding:7px 9px;border-radius:999px}
+.dot{width:6px;height:6px;border-radius:50%;background:#5cf5b6;;}
+.hero{text-align:center;margin-top:12px}.eyebrow{font-size:10px;color:var(--a);letter-spacing:2px;font-weight:750}.hero h1{font-size:22px;letter-spacing:-.5px;line-height:1.15;margin:6px 0 0;font-weight:800}
+.stage{position:relative;height:198px;display:grid;place-items:center;margin-top:3px}
+.glow{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,var(--b) 0%,transparent 69%);opacity:.25;animation:breathe 3.4s ease-in-out infinite;pointer-events:none}
+.orbit{position:absolute;border:1px solid #ffffff20;border-radius:50%;pointer-events:none;animation:spin 14s linear infinite}
+.orbit.one{width:196px;height:196px;border-top:2px solid var(--a);border-bottom:2px solid var(--b);transform:rotate(25deg)}
+.orbit.two{width:175px;height:175px;border-left:1px dashed #d9f9ff68;border-right:1px dashed #d9f9ff68;animation-duration:19s}
+
+.core{position:relative;z-index:2;width:146px;height:146px;border-radius:50%;border:1px solid #ffffff60;cursor:pointer;touch-action:manipulation;display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;background:radial-gradient(circle at 28% 22%,#ffffff99,transparent 30%),linear-gradient(125deg,var(--a),var(--b));box-shadow:inset 0 0 24px #ffffff55,0 0 35px #4a6af67a;}
+.core:active{transform:scale(.93)}.num{font-size:47px;line-height:1;font-weight:850;letter-spacing:-3px;}.unit{font-size:10px;letter-spacing:3px;font-weight:800;margin-top:5px;color:#fff}
+.spark{position:absolute;z-index:4;width:5px;height:5px;border-radius:50%;background:var(--a);pointer-events:none;left:50%;top:50%;animation:fly .76s ease-out forwards}
+.caption{text-align:center;font-size:11px;color:#aab9d4;letter-spacing:1.5px;margin-top:7px;min-height:18px}
+.statline{justify-content:space-between;margin-top:16px;font-size:10px;letter-spacing:1px;color:#9baece;font-weight:700}
+.bar{height:6px;border-radius:9px;background:#ffffff18;margin-top:8px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--b),var(--a));;border-radius:9px;}
+.controls{gap:9px;margin-top:13px}button{font-family:inherit;-webkit-tap-highlight-color:transparent}button:focus-visible{outline:2px solid white;outline-offset:3px}
+.btn{border:1px solid #ffffff26;border-radius:12px;padding:12px 9px;min-width:0;font-size:12px;font-weight:800;letter-spacing:.6px;cursor:pointer;background:#ffffff10;color:#e9f0ff}
+.btn.main{flex:1.4;background:linear-gradient(110deg,var(--a),var(--b));color:#081426;border:0;}.btn.other{flex:1}
+.mode-label{font-size:9px;color:#93a7c7;letter-spacing:1px;font-weight:750;margin-top:13px;margin-bottom:7px}
+.modes{gap:6px}.mode{flex:1;min-width:0;border:1px solid #ffffff22;color:#a9bad8;border-radius:9px;background:#ffffff08;padding:9px 3px;cursor:pointer;font-size:10px;letter-spacing:.5px;font-weight:800}.mode.selected{border-color:var(--a);color:#f7ffff;background:#ffffff1c}
+.mode i{display:inline-block;width:7px;height:7px;margin-right:4px;border-radius:50%;background:var(--sw);}
+.bottom{justify-content:space-between;gap:5px;margin-top:13px;flex-wrap:wrap}.mini{color:#b3c3df;border:0;background:none;cursor:pointer;font-size:10px;padding:5px 2px;}.mini.on{color:var(--a)}
+.notice{font-size:10px;min-height:16px;margin-top:7px;text-align:center;color:#94a9c9}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes breathe{50%{transform:scale(1.18);opacity:.45}}@keyframes fly{to{transform:translate(var(--x),var(--y)) scale(0);opacity:0}}@keyframes pop{50%{box-shadow:inset 0 0 32px #ffffffaa,0 0 0 13px #ffffff18,0 0 60px var(--a)}}
+@media(max-width:280px){.app{padding:13px 10px 23px}.brand{letter-spacing:1px}.hero h1{font-size:19px}.mode{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.orbit,.glow,.dot{animation:none}.spark{animation-duration:.01s}}
+</style></head><body><div class="app" id="app"><header><div class="head-left"><div class="logo">✦</div><div><div class="brand">LUMEN LAB</div><div class="sub">EXPERIMENT / 001</div></div></div><div class="live"><span class="dot"></span> LIVE</div></header><div class="hero"><div class="eyebrow">РЕАКТОР · 001</div><h1>Создавай энергию</h1></div><div class="stage" id="stage"><div class="glow"></div><div class="orbit one"></div><div class="orbit two"></div><button class="core" id="core" aria-label="Зарядить реактор"><span class="num" id="energy">00</span><span class="unit">ЭНЕРГИЯ</span></button></div><div class="caption" id="caption">КОСНИСЬ ЯДРА</div><div class="statline"><span>ЗАРЯД РЕАКТОРА</span><strong id="level">УРОВЕНЬ 01</strong></div><div class="bar"><div class="fill" id="fill"></div></div><div class="controls"><button class="btn main" id="pulse">✦  ИМПУЛЬС</button><button class="btn other" id="random">↝  СЮРПРИЗ</button></div><div class="mode-label">ЦВЕТОВАЯ ВСЕЛЕННАЯ</div><div class="modes"><button class="mode selected" data-mode="0"><i style="--sw:#5fffe4"></i>NEON</button><button class="mode" data-mode="1"><i style="--sw:#f8b6ff"></i>AURORA</button><button class="mode" data-mode="2"><i style="--sw:#ffc56b"></i>SOLAR</button></div><div class="bottom"><button class="mini" id="auto">◉ Авто: выкл</button><button class="mini" id="ping">⌁ Пинг боту</button><button class="mini" id="copy">⧉ Код</button><button class="mini" id="reset">↻ Сброс</button></div><div class="notice" id="notice">Три мира · частицы · тактильный отклик</div></div><script>
+(function(){
+const TW=window.TelegramWidget,$=id=>document.getElementById(id);
+const colors=[['#5fffe4','#8176ff'],['#f8b6ff','#6cb9ff'],['#ffc56b','#ff5f8e']];
+let energy=0,level=1,mode=0,auto=false,timer=null,combo=0;
+try{let d=JSON.parse(localStorage.getItem('lumen')||'{}');energy=Math.max(0,Math.min(99,Number(d.e)||0));level=Math.max(1,Math.min(99,Number(d.l)||1));mode=[0,1,2].includes(d.m)?d.m:0}catch(e){}
+function save(){try{localStorage.setItem('lumen',JSON.stringify({e:energy,l:level,m:mode}))}catch(e){}}
+function note(s){$('notice').textContent=s}
+function render(){document.documentElement.style.setProperty('--a',colors[mode][0]);document.documentElement.style.setProperty('--b',colors[mode][1]);$('energy').textContent=String(energy).padStart(2,'0');$('level').textContent='УРОВЕНЬ '+String(level).padStart(2,'0');$('fill').style.width=energy+'%';document.querySelectorAll('.mode').forEach((b,i)=>b.classList.toggle('selected',i===mode));save()}
+function particles(n){let box=$('stage');for(let i=0;i<n;i++){let s=document.createElement('b'),a=Math.random()*6.283,d=76+Math.random()*68;s.className='spark';s.style.setProperty('--x',(Math.cos(a)*d).toFixed(1)+'px');s.style.setProperty('--y',(Math.sin(a)*d).toFixed(1)+'px');s.style.width=s.style.height=(3+Math.random()*5)+'px';box.appendChild(s);setTimeout(()=>s.remove(),820)}}
+function haptic(){if(TW&&TW.HapticFeedback)TW.HapticFeedback.impactOccurred('light')}
+function charge(n){energy+=n;combo++;particles(8+Math.min(combo,9));haptic();if(energy>=100){energy%=100;level++;particles(26);$('caption').textContent='НОВЫЙ УРОВЕНЬ!';note('Реактор перешёл на новый уровень')}else{$('caption').textContent=combo>5?'КОМБО ×'+combo+' · ПРОДОЛЖАЙ!':'ЗАРЯД РАСТЁТ';note('Заряд: '+energy+'%')}render()}
+function setMode(i){mode=i;render();particles(16);haptic();note('Цветовая схема изменена')}
+$('core').onclick=()=>charge(7);$('pulse').onclick=()=>charge(12);
+$('random').onclick=()=>{setMode(Math.floor(Math.random()*3));charge(5+Math.floor(Math.random()*19))};
+document.querySelectorAll('.mode').forEach((b,i)=>b.onclick=()=>setMode(i));
+$('auto').onclick=()=>{auto=!auto;$('auto').textContent=auto?'◉ Авто: вкл':'◉ Авто: выкл';$('auto').classList.toggle('on',auto);if(timer)clearInterval(timer);timer=auto?setInterval(()=>charge(3),2300):null;note(auto?'Автопульс работает':'Автопульс выключен')};
+$('reset').onclick=()=>{energy=0;level=1;combo=0;render();$('caption').textContent='КОСНИСЬ ЯДРА';note('Реактор сброшен')};
+$('copy').onclick=()=>{let code='LUMEN-'+['NEON','AURORA','SOLAR'][mode]+'-L'+level;if(TW&&TW.copyText){try{TW.copyText(code);note('Код '+code+' скопирован')}catch(e){note(code)}}else{note('Твой код: '+code)}};
+$('ping').onclick=()=>{if(!TW||!TW.request){note('Пинг только в Telegram');return}note('Запрос…');TW.request('my:ping').then(a=>{try{let d=JSON.parse(a.result);note(d.ok?'Бот на связи ✓':'Ошибка ответа')}catch(e){note('Бот ответил')}},e=>note('Бот: '+e.code))};
+if(TW){TW.ready()}
+render();
+})();
+</script></body></html>
